@@ -56,12 +56,11 @@ export function genServerRender(components) {
   const { renderToString } = require("react-dom/server");
   return function render(componentName, props) {
     const Comp = components[componentName];
-    const App = (
+
+    return renderToString(
       <LiveViewContextProvider pushEvent={noOp}>
         <Comp {...props} />
       </LiveViewContextProvider>
     );
-
-    renderToString(App);
   };
 }
